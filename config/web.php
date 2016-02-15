@@ -4,13 +4,24 @@ $params = require(__DIR__ . '/params.php');
 
 $config = [
     'id' => 'basic',
-    'basePath' => dirname(__DIR__),
+	'name' => 'Todoshki',
+	
+	'basePath' => dirname(__DIR__),
+	
+	'language' => 'ru-RU',
+	'sourceLanguage' => 'en-US',
+	
+	'layout' => 'column2',
+	
     'bootstrap' => ['log'],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '8nabRWqQhEThbF7WFl_Szj6tg6QwpCa6',
-        ],
+			'parsers' => [
+				'application/json' => 'yii\web\JsonParser',
+			]
+		],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
@@ -21,7 +32,15 @@ $config = [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        'mailer' => [
+//		'urlManager' => [
+//			'enablePrettyUrl' => true,
+//			'enableStrictParsing' => true,
+//			'showScriptName' => false,
+//			'rules' => [
+////				['class' => 'yii\rest\UrlRule', 'controller' => 'project'],
+//			],
+//		],
+		'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
@@ -37,8 +56,21 @@ $config = [
                 ],
             ],
         ],
-        'db' => require(__DIR__ . '/db.php'),
-    ],
+        'db' => require(__DIR__ . '/db-local.php'),
+		'i18n' => [
+			'translations' => [
+				'app*' => [
+					'class' => 'yii\i18n\PhpMessageSource',
+					//'basePath' => '@app/messages',
+					//'sourceLanguage' => 'en-US',
+//					'fileMap' => [
+//						'app' => 'app.php',
+//						'app/error' => 'error.php',
+//					],
+				],
+			],
+		],
+	],
     'params' => $params,
 ];
 

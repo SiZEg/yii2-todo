@@ -18,9 +18,12 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
+        'css/ie10-viewport-bug-workaround.css',
+        'css/offcanvas.css',
         'css/site.css',
     ];
     public $js = [
+		'js/todoshki.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',

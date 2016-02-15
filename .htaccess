@@ -1,0 +1,14 @@
+Options +FollowSymLinks
+IndexIgnore */*
+
+# use mod_rewrite for pretty URL support
+RewriteEngine on
+
+RewriteCond %{REQUEST_URI} !^/yii2-todo/web/
+RewriteRule (.*) /yii2-todo/web/$1
+
+# If a directory or a file exists, use the request directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# Otherwise forward the request to index.php
+RewriteRule . /yii2-todo/web/index.php
